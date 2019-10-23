@@ -1,17 +1,58 @@
 <template>
   <div class="left">
-    <router-link to="/index/manage" class="text-center color3" active-class="select">管理员管理</router-link>
-    <router-link to="/index/banner" class="text-center color3" active-class="select">banner管理</router-link>
-    <router-link to="/index/teacher" class="text-center color3" active-class="select">家教管理</router-link>
-    <router-link to="/index/water" class="text-center color3" active-class="select">水站管理</router-link>
-    <router-link to="/index/repair" class="text-center color3" active-class="select">维修管理</router-link>
-    <router-link to="/index/housework" class="text-center color3" active-class="select">家政管理</router-link>
-    <router-link to="/index/changepass" class="text-center color3" active-class="select">修改密码</router-link>
+    <router-link
+      v-if="isAdd==0"
+      to="/index/manage"
+      class="text-center color3"
+      active-class="select"
+    >管理员管理</router-link>
+    <router-link
+      v-if="isAdd==1"
+      to="/index/banner"
+      class="text-center color3"
+      active-class="select"
+    >banner管理</router-link>
+    <router-link
+      v-if="isAdd==1"
+      to="/index/teacher"
+      class="text-center color3"
+      active-class="select"
+    >家教管理</router-link>
+    <router-link
+      v-if="isAdd==1"
+      to="/index/water"
+      class="text-center color3"
+      active-class="select"
+    >水站管理</router-link>
+    <router-link
+      v-if="isAdd==1"
+      to="/index/repair"
+      class="text-center color3"
+      active-class="select"
+    >维修管理</router-link>
+    <router-link
+      v-if="isAdd==1"
+      to="/index/housework"
+      class="text-center color3"
+      active-class="select"
+    >家政管理</router-link>
+    <router-link
+      v-if="isAdd==1"
+      to="/index/changepass"
+      class="text-center color3"
+      active-class="select"
+    >修改密码</router-link>
   </div>
 </template>
 <script>
 import API from "../common/js/api";
-export default {};
+export default {
+  data() {
+    return {
+      isAdd: sessionStorage.getItem("isAdmin")
+    };
+  }
+};
 </script>
 <style lang="stylus" scoped>
 @import '../common/stylus/index.styl';

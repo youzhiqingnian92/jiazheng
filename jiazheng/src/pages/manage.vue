@@ -56,7 +56,7 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="isAdd = false">取 消</el-button>
+        <el-button @click="isAdd = false;">取 消</el-button>
         <el-button type="primary" @click="add" v-if="id==0">确 定</el-button>
         <el-button type="success" @click="update" v-else>修 改</el-button>
       </div>
@@ -94,6 +94,7 @@ export default {
   methods: {
     add1() {
       this.isAdd = true;
+      this.id = 0;
     },
     //请求数据
     info() {
@@ -160,19 +161,26 @@ export default {
     add() {
       this.adduser.time = new Date(this.adduser.time).getTime();
       this.isAdd = true;
-      this.$axios({
-        url: API.addManage,
-        method: "post",
-        data: this.adduser
-      }).then(res => {
-        if (res.data.isok) {
-          this.isAdd = false;
-          this.$success(res);
-          this.info();
-        } else {
-          this.$error(res);
-        }
-      });
+      if (this.adduser.pass == this.config) {
+        this.$axios({
+          url: API.addManage,
+          method: "post",
+          data: this.adduser
+        }).then(res => {
+          if (res.data.isok) {
+            this.isAdd = false;
+            this.$success(res);
+            this.info();
+          } else {
+            this.$error(res);
+          }
+        });
+      } else {
+        this.$message({
+          type: "info",
+          message: "密码不一致"
+        });
+      }
     },
     //查看
     look(id) {
@@ -205,22 +213,11 @@ export default {
         }
       });
     }
-  },
-  filters: {
-    tranTime(time) {
-      var date = new Date(Number(time));
-      var year = date.getFullYear();
-      var month = (date.getMonth() + 1 + "").padStart(2, "0");
-      var day = (date.getDate() + "").padStart(2, "0");
-      return `${year}-${month}-${day}`;
-    }
   }
 };
 </script>
 <style lang="stylus" scoped>
 @import '../common/stylus/index.styl';
-
-
 
 .datebox {
   width: 100%;

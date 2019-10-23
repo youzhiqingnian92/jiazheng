@@ -1,9 +1,9 @@
 <template>
   <div>
     <!-- 添加按钮 -->
-    <v-addbtn></v-addbtn>
+    <v-addbtn @addWater1="clearRepair"></v-addbtn>
     <v-table :banner="banner" :arr="['des']" @del="del"></v-table>
-    <v-from @addBanner="addBanner" ></v-from>
+    <v-from @addBanner="addBanner" :houseBanner="houseBanner" :arr="['des']"></v-from>
   </div>
 </template>
 <script>
@@ -13,13 +13,18 @@ export default {
   data() {
     return {
       banner: [],
-      bannerData: {}
+      bannerData: {},
+      houseBanner: ""
     };
   },
   mounted() {
     this.info();
   },
   methods: {
+    clearRepair() {
+      this.$store.dispatch("changeAA");
+      this.houseBanner = {};
+    },
     //查询信息
     info() {
       this.$axios({

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <el-dialog title="添加水站" :visible.sync="$store.state.isAdd">
-      <el-form :model="waters">
+    <el-dialog title="添加维修" :visible.sync="$store.state.isAdd">
+      <el-form :model="repair">
         <el-form-item class="font1" label="名称" :label-width="formLabelWidth">
-          <el-input clearable v-model="waters.name" autocomplete="off" placeholder="请输入水站名称"></el-input>
+          <el-input clearable v-model="repair.name" autocomplete="off" placeholder="请输入维修名称"></el-input>
         </el-form-item>
         <el-form-item class="font1" label="评分" :label-width="formLabelWidth">
           <el-input
@@ -11,55 +11,48 @@
             max="5"
             min="0"
             clearable
-            v-model="waters.score"
+            v-model="repair.score"
             autocomplete="off"
             placeholder="0-5分之间"
           ></el-input>
         </el-form-item>
-        <el-form-item class="font1" label="月销售量" :label-width="formLabelWidth">
+        <el-form-item class="font1" label="类型" :label-width="formLabelWidth">
           <el-input
-            type="number"
             clearable
-            v-model="waters.count"
+            v-model="repair.type"
             autocomplete="off"
-            placeholder="月销售量"
+            placeholder="维修类型"
           ></el-input>
         </el-form-item>
         <el-form-item class="font1" label="点赞数量" :label-width="formLabelWidth">
           <el-input
             type="number"
             clearable
-            v-model="waters.likeNum"
+            v-model="repair.likeNum"
             autocomplete="off"
             placeholder="点赞数量"
           ></el-input>
         </el-form-item>
-        <el-form-item class="font1" label="浏览量" :label-width="formLabelWidth">
+        <el-form-item class="font1" label="关注人数" :label-width="formLabelWidth">
           <el-input
             type="number"
             clearable
-            v-model="waters.readNum"
+            v-model="repair.readNum"
             autocomplete="off"
-            placeholder="浏览量"
+            placeholder="关注人数"
           ></el-input>
         </el-form-item>
         <el-form-item class="font1" label="商家地址" :label-width="formLabelWidth">
-          <el-input clearable v-model="waters.address" autocomplete="off" placeholder="商家地址"></el-input>
+          <el-input clearable v-model="repair.address" autocomplete="off" placeholder="商家地址"></el-input>
         </el-form-item>
         <el-form-item class="font1" label="距离" :label-width="formLabelWidth">
-          <el-input clearable v-model="waters.len" autocomplete="off" placeholder="eg:4.2km"></el-input>
+          <el-input clearable v-model="repair.len" autocomplete="off" placeholder="eg:4.2km"></el-input>
         </el-form-item>
         <el-form-item class="font1" label="商家信息" :label-width="formLabelWidth">
-          <el-input clearable v-model="waters.des" autocomplete="off" placeholder="商家信息"></el-input>
+          <el-input clearable v-model="repair.info" autocomplete="off" placeholder="商家信息"></el-input>
         </el-form-item>
         <el-form-item class="font1" label="电话" :label-width="formLabelWidth">
-          <el-input clearable v-model="waters.tel" autocomplete="off" placeholder="eg:400-100-1000"></el-input>
-        </el-form-item>
-        <el-form-item class="font1" label="价格" :label-width="formLabelWidth">
-          <el-input clearable v-model="waters.price" autocomplete="off" placeholder="eg:50/桶"></el-input>
-        </el-form-item>
-        <el-form-item class="font1" label="图片" :label-width="formLabelWidth">
-          <el-input clearable v-model="waters.img" autocomplete="off" placeholder="图片链接"></el-input>
+          <el-input clearable v-model="repair.tel" autocomplete="off" placeholder="eg:400-100-1000"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -77,24 +70,24 @@ export default {
   data() {
     return {
       formLabelWidth: "120px",
-      waters: {}
+      repair: {}
     };
   },
   watch: {
-    banner(){this.waters = this.banner}
-    
+    banner() {
+      this.repair = this.banner;
+    }
   },
   methods: {
     cancel() {
       this.$store.dispatch("changeAA2");
-      this.waters = {};
+      this.repair = {};
     },
     addBanner() {
-      this.$emit("addBanner", this.waters);
-      
+      this.$emit("addBanner", this.repair);
     },
     revise() {
-      this.$emit("reviseWater", this.waters);
+      this.$emit("reviseRepair", this.repair);
     }
   }
 };

@@ -53,6 +53,8 @@ export default {
             message: res.data.info,
             type: "success"
           });
+          sessionStorage.setItem('userName',this.user.name)
+          sessionStorage.setItem('isAdmin',this.user.type)
           this.$router.push('/index')
         } else {
           this.$message({

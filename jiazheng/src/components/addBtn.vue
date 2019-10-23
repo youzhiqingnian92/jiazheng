@@ -8,8 +8,8 @@ import API from '../common/js/api'
 export default {
     methods: {
         add(){
-            this.$store.dispatch("changeAA");
-            this.$store.dispatch("waterAA2");
+            // this.$store.dispatch("changeAA");
+            // this.$store.dispatch("waterAA2");
             this.$emit("addWater1")
         }
     }

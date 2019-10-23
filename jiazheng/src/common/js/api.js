@@ -45,7 +45,50 @@ const delWater = baseUrl + "/delWater";
 //添加水站
 const addWater = baseUrl + "/addWater";
 //修改水站
-const updateWater =baseUrl+"/updateWater"
+const updateWater = baseUrl + "/updateWater";
+//获取水站评论
+const findComment = baseUrl + "/findComment";
+// 删除水站评论
+const delComment = baseUrl + "/delComment";
+
+//获取维修列表
+const findRepair = baseUrl + "/findRepair";
+//删除维修
+const delRepair = baseUrl + "/delRepair";
+//添加维修
+const addRepair = baseUrl + "/addRepair";
+//修改维修
+const updateRepair = baseUrl + "/updateRepair";
+//获取维修评论
+const findRepairComment = baseUrl + "/findRepairComment";
+//删除维修评论
+const delRepairComment = baseUrl + "/delRepairComment ";
+
+//获取家政轮播图
+const homeBanner = baseUrl + "/homeBanner";
+//删除家政轮播图
+const delHomeBanner = baseUrl+"/delHomeBanner"
+//添加家政轮播图
+const addHomeBanner= baseUrl+"/addHomeBanner"
+
+//获取家政人员信息
+const findHomeWorker = baseUrl+"/findHomeWorker"
+//删除员工信息
+const delHomeWorker = baseUrl+"/delHomeWorker"
+//添加员工信息
+const addHomeWorker =baseUrl+"/addHomeWorker"
+//修改员工信息
+const updateHomeWorker = baseUrl+"/updateHomeWorker"
+
+//获取家政类型
+const getHomeType = baseUrl+"/getHomeType"
+//获取家政资格
+const getQualification = baseUrl+"/getQualification"
+
+//修改密码
+const changePassManage =baseUrl+"/changePassManage"
+// 退出登录 
+const exit = baseUrl+"/exit"
 export default {
   login,
   findManage,
@@ -67,5 +110,24 @@ export default {
   findWater,
   delWater,
   addWater,
-  updateWater
+  updateWater,
+  findComment,
+  delComment,
+  findRepair,
+  delRepair,
+  addRepair,
+  updateRepair,
+  findRepairComment,
+  delRepairComment,
+  homeBanner,
+  delHomeBanner,
+  addHomeBanner,
+  findHomeWorker,
+  delHomeWorker,
+  getHomeType,
+  getQualification,
+  addHomeWorker,
+  updateHomeWorker,
+  changePassManage,
+  exit
 };

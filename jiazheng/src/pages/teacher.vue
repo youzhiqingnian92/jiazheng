@@ -2,7 +2,7 @@
   <div class="wrap">
     <el-tabs v-model="activeName">
       <el-tab-pane label="家教banner" name="first">
-        <el-button class="btnAdd" type="primary" plain @click="isTea = true">添加</el-button>
+        <el-button class="btnAdd" type="primary" plain @click="isTea = true;teaData={}">添加</el-button>
         <v-table :banner="teaBanData" :arr="['des']" @del="delTea"></v-table>
         <!-- 弹框 -->
         <el-dialog title="添加家教banner" :visible.sync="isTea">
@@ -21,7 +21,7 @@
         </el-dialog>
       </el-tab-pane>
       <el-tab-pane label="家教类型" name="second">
-        <el-button class="btnAdd" type="primary" plain @click="isType = true">添加</el-button>
+        <el-button class="btnAdd" type="primary" plain @click="isType = true;typeData={}">添加</el-button>
         <v-table :banner="teacherType" :arr="['type']" @del="delType"></v-table>
         <!-- 弹框 -->
         <el-dialog title="添加家教类型" :visible.sync="isType">
@@ -40,7 +40,7 @@
         </el-dialog>
       </el-tab-pane>
       <el-tab-pane label="家教排行" name="third">
-        <el-button class="btnAdd" type="primary" plain @click="isTop = true">添加</el-button>
+        <el-button class="btnAdd" type="primary" plain @click="isTop = true;topData={}">添加</el-button>
         <v-table :banner="teacherTop" :arr="['num','teacherImg']" @del="delTop"></v-table>
         <!-- 弹框 -->
         <el-dialog title="添加家教排行" :visible.sync="isTop">
@@ -57,7 +57,13 @@
               ></el-input>
             </el-form-item>
             <el-form-item class="font1" label="报名人数" :label-width="formLabelWidth">
-              <el-input clearable v-model="topData.num" autocomplete="off" placeholder="报名人数"></el-input>
+              <el-input
+                clearable
+                type="number"
+                v-model="topData.num"
+                autocomplete="off"
+                placeholder="报名人数"
+              ></el-input>
             </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
@@ -265,19 +271,26 @@ export default {
       });
     },
     topYes() {
-      this.$axios({
-        url: API.addTeacherTop,
-        params: this.topData
-      }).then(res => {
-        if (res.data.isok) {
-          this.$success(res);
-          this.isTop = false;
-          this.infotop();
-          this.topData = { num: "", img: "",teacherImg:"" };
-        } else {
-          this.$error(res);
-        }
-      });
+      if (this.topData.num >= 0) {
+        this.$axios({
+          url: API.addTeacherTop,
+          params: this.topData
+        }).then(res => {
+          if (res.data.isok) {
+            this.$success(res);
+            this.isTop = false;
+            this.infotop();
+            this.topData = { num: "", img: "", teacherImg: "" };
+          } else {
+            this.$error(res);
+          }
+        });
+      }else{
+        this.$message({
+            type: "info",
+            message: "人数不能小于0"
+          });
+      }
     }
   }
 };

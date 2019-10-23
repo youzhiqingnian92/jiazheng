@@ -3,6 +3,7 @@ import Vue from "vue";
 
 var state = {
   isAdd: false,
+  ishouseAdd: false,
   iswaterAdd:true
 };
 var mutations = {
@@ -11,6 +12,12 @@ var mutations = {
     },
     changeAdd2(state){
         state.isAdd = false
+    },
+    changeHouse(state){
+        state.ishouseAdd = true
+    },
+    changeHouse2(state){
+        state.ishouseAdd = false
     },
     waterAdd(state){
         state.iswaterAdd = false
@@ -25,6 +32,12 @@ var actions = {
     },
     changeAA2(context){
         context.commit("changeAdd2")
+    },
+    changeHH(context){
+        context.commit("changeHouse")
+    },
+    changeHH2(context){
+        context.commit("changeHouse2")
     },
     waterAA(context){
         context.commit("waterAdd")
